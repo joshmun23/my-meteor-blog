@@ -21,19 +21,6 @@ Template.home.helpers({
 	// 	};
 	// }
 	'postsList': function() {
-		return [
-			{
-				title: 'My Second entry',
-				description: 'Borem sodum color sit amet, consetetur sadipscing elitr.',
-				author: 'Fabian Vogelsteller',
-				timeCreated: moment().subtract(3,'days').unix()
-			},
-			{
-				title: 'My First entry',
-				description: 'Lorem ipsum dolor sit amet, consetetur saipscing elitr.',
-				author: 'Fabian Vogelsteller',
-				timeCreated: moment().subtract(7, 'days').unix()
-			}
-		];
+		return Posts.find({}, {sort: {timeCreated: -1}});
 	}
 });
