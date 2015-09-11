@@ -3,4 +3,18 @@
 ## Welcome to my Blog
 Here I'm talking about my latest discoveries from the world of JavaScript.
 {{/markdown}}
+<!-- {{exampleHelper}}
+
+{{#with dataContextHelper}}
+  {{> contextExample}}
+{{/with}} -->
+
+<!-- {{#blockHelperExample myValue=true}}
+  <span>Some Content</span>
+{{else}}
+  <span>Some Warning</span>
+{{/blockHelperExample}} -->
+{{#each postsList}}
+  {{> postInList}}
+{{/each}}
 </template>
