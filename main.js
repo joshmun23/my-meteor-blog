@@ -1,10 +1,10 @@
 if (Meteor.isClient) {
-  Session.setDefault('mySessionExample', 'Sup boo');
+  // Session.setDefault('mySessionExample', 'Sup boo');
 
   Template.home.created = function() {
-    this.autorun(function(){
-      alert(Session.get('mySessionExample'))
-    })
+    // this.autorun(function(){
+    //   alert(Session.get('mySessionExample'))
+    // })
   }
 
   Template.home.helpers({
