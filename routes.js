@@ -3,8 +3,7 @@ Router.configure({
 });
 
 Router.map(function() {
-  this.route('Home', {
+  this.route('home', {
     path: '/',
-    template: 'home'
   });
 });
