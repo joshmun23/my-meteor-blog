@@ -14,6 +14,9 @@ Template.home.helpers({
     // #Storing Data -> Querying a collection
     'postsList': function(){
         return Posts.find({}, {sort: {timeCreated: -1}});
+    },
+    sessionExample: function() {
+        return Session.get('mySessionExample')
     }
 });
 
