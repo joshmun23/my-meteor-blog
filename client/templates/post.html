@@ -4,6 +4,9 @@
 
   <small>
     Posted {{formatTime timeCreated "fromNow"}} by {{author}}
+    {{#if currentUser}}
+      | <a href="/edit-post/{{slug}}">Edit post</a>
+    {{/if}}
   </small>
 
   <div class="postContent">

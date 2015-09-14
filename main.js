@@ -1,3 +1,8 @@
+  // the accounts-ui package will not show the Register button to visitors
+  // does not work when using third-party services, must create 'deny' rules
+  Accounts.config({
+    forbidClientAccountCreation: true
+  })
 if (Meteor.isClient) {
   // Session.setDefault('mySessionExample', 'Sup boo');
 
