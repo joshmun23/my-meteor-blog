@@ -4,6 +4,8 @@
     forbidClientAccountCreation: true
   })
 if (Meteor.isClient) {
+  Meteor.subscribe('userRoles');
+
   // Session.setDefault('mySessionExample', 'Sup boo');
 
   Template.home.created = function() {
@@ -29,8 +31,8 @@ if (Meteor.isClient) {
   // });
 
   Template.home.events({
-    'button .testFunc': function() {
-      return testFunc
-    }
+    // 'button .testFunc': function() {
+    //   return testFunc
+    // }
   })
 }

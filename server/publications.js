@@ -13,3 +13,16 @@ Meteor.publish('lazyload-posts', function (limit) {
 Meteor.publish("single-post", function (slug) {
   return Posts.find({slug: slug});
 });
+
+Meteor.publish('userRoles', function() {
+  if (this.userId) {
+    console.log(this)
+    return Meteor.users.find({_id: this.userId},
+      {
+        fields: {roles: 1}
+      }
+    );
+  } else {
+    this.ready();
+  }
+})

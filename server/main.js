@@ -48,5 +48,29 @@ Meteor.startup(function() {
     _.each(dummyPosts, function(post) {
       Posts.insert(post);
     });
-  }
+  };
+  if(Meteor.users.find().count() === 0) {
+    Accounts.createUser({
+      username: 'joshmun23',
+      email: 'joshmun23@gmail.com',
+      password: 'password',
+      profile: {
+        name: 'Josh Mun'
+      }
+    });
+
+    if (Meteor.users.find().count() > 1) {
+      console.log('Created Admin user');
+    };
+  };
+
+  if(Meteor.users.find().count() === 1) {
+    Meteor.users.update(Meteor.users.findOne()._id, {
+      $set: {
+        roles: {
+          admin: true
+        }
+      }
+    })
+  };
 })

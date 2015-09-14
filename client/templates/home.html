@@ -8,7 +8,7 @@ Here I'm talking about my latest discoveries from the world of JavaScript.
   <!-- <h2>This comes from our Session: <strong>{{sessionExample}}</strong></h2> -->
   <!-- Listing posts -->
 
-  {{#if currentUser}}
+  {{#if currentUser.roles.admin}}
     <a href="/create-post" class="createNewPost">Create new post</a>
   {{/if}}
 
