@@ -8,19 +8,20 @@ Template.home.destroyed = function() {
 	console.log('Destroyed the home template');
 };
 
+
+// Template helpers
 Template.home.helpers({
-	// exampleHelper: function() {
-	// 	return new Spacebars.SafeString('This text came from a helper with some <strong>HTML</strong>.');
-	// },
-	// dataContextHelper: function() {
-	// 	return {
-	// 		someText: 'This text was set using a helper of the parent template.',
-	// 		someNested: {
-	// 			text: 'That comes from "someNested.text"'
-	// 		}
-	// 	};
-	// }
-	'postsList': function() {
-		return Posts.find({}, {sort: {timeCreated: -1}});
-	}
+    // #Storing Data -> Querying a collection
+    'postsList': function(){
+        return Posts.find({}, {sort: {timeCreated: -1}});
+    }
+});
+
+// #Controlling the data flow -> Lazy load posts or how to change subscriptions
+Template.home.events({
+    'click button.lazyload': function(e, template){
+        var currentLimit = Session.get('lazyloadLimit');
+
+        Session.set('lazyloadLimit', currentLimit + 2);
+    }
 });
