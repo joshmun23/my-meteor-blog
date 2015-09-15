@@ -19,8 +19,16 @@ Router.configure({
     }
 });
 
-Router.map(function() {
+PostController = RouteController.extend({
+    waitOn: function() {
+        return Meteor.subscribe('single-post', this.params.slug);
+    },
+    data: function() {
+        return Posts.findOne({slug: this.params.slug});
+    }
+})
 
+Router.map(function() {
     // #Routes -> Setup the router
     this.route('Home', {
         path: '/',
@@ -39,18 +47,45 @@ Router.map(function() {
         template: 'about'
     });
 
+    // Refactor post routes after setting controller above
+    // this.route('Post', {
+    //     path: '/posts/:slug',
+    //     template: 'post',
 
-    // #Routes -> Setting up the post route
+    //     waitOn: function() {
+    //         return Meteor.subscribe('single-post', this.params.slug);
+    //     },
+
+    //     data: function() {
+    //         return Posts.findOne({slug: this.params.slug});
+    //     }
+    // });
     this.route('Post', {
         path: '/posts/:slug',
         template: 'post',
+        controller: 'PostController'
+    });
 
-        waitOn: function() {
-            return Meteor.subscribe('single-post', this.params.slug);
-        },
+    this.route('Create Post', {
+        path: '/create-post',
+        template: 'editPost'
+    });
 
-        data: function() {
-            return Posts.findOne({slug: this.params.slug});
-        }
+    this.route('Edit Post', {
+        path: '/edit-post/:slug',
+        template: 'editPost',
+        controller: 'PostController'
     });
 });
+
+// set up function to not allow visitors to see user only pages
+var requiresLogin = function() {
+    if (!Meteor.user() || !Meteor.user().roles ||
+        !Meteor.user().roles.admin) {
+        this.render('notFound')
+    } else {
+        this.next();
+    };
+};
+
+Router.onBeforeAction(requiresLogin, {only: ['Create Post', 'Edit Post']});
