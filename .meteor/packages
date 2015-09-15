@@ -14,3 +14,4 @@ iron:router
 multiply:iron-router-progress
 accounts-ui
 accounts-password
+wizonesolutions:underscore-string
