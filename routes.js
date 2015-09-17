@@ -76,6 +76,12 @@ Router.map(function() {
         template: 'editPost',
         controller: 'PostController'
     });
+
+    this.route('View Posts', {
+        path: '/posts',
+        template: 'posts',
+        controller: 'PostController'
+    });
 });
 
 // set up function to not allow visitors to see user only pages
